@@ -10,6 +10,10 @@ app.use(cors());
 // routes
 app.use("/api", require("./routes"));
 
+app.get("/", (req, res) => {
+    res.json("Server's live!");
+});
+
 // error handler
 app.use(async(err, req, res, next) => {
     if (res.headersSent) {

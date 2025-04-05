@@ -21,7 +21,7 @@ const studentsData = async(students) => {
             profile: {
                 create: {
                     rollNo: rollNo,
-                    dob: dob,
+                    dob: new Date(dob),
                     yearId: yearId,
                     courseId: courseId,
                 },
@@ -88,7 +88,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
                 profile: {
                     create: {
                         rollNo: rollNo,
-                        dob: dob,
+                        dob: new Date(dob),
                         yearId: yearId,
                         courseId: courseId,
                     },
@@ -98,6 +98,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(student);
     } catch (err) {
+        console.log("## error in creating student: ", err);
         next(err);
     }
 });
@@ -121,6 +122,7 @@ router.post(
             });
             res.send(students);
         } catch (err) {
+            console.log("## error in creating students (bulk route): ", err);
             next(err);
         }
     }

@@ -67,6 +67,28 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
     }
 });
 
+router.post("/bulk", auth({ type: UserType.TEACHER }), async(req, res, next) => {
+    const subjectsData = req.body.subjects || []; // assuming req.body.subjects is an array of subjects
+    try {
+        const result = await prisma.$transaction(
+            subjectsData.map(subject => 
+                prisma.subject.create({
+                    data: {
+                        name: subject.name,
+                        yearId: subject.yearId,
+                        courseId: subject.courseId,
+                    },
+                    select: subjectFields,
+                })
+            )
+        );
+        res.send(result);
+    } catch (err) {
+        console.log("## error in creating subjects: ", err);
+        next(err);
+    }
+});
+
 router.delete(
     "/:id",
     auth({ type: UserType.TEACHER }),

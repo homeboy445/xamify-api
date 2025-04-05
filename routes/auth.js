@@ -80,7 +80,7 @@ router.post("/token", async(req, res) => {
 });
 
 // default teacher create route
-router.get(`/${process.env.DEFAULT_TEACHER_ROUTE}`, async(req, res, next) => {
+router.post(`/register`, async(req, res, next) => {
     try {
         const email = process.env.DEFAULT_TEACHER_EMAIL;
         const password = process.env.DEFAULT_TEACHER_PASSWORD;
@@ -149,6 +149,7 @@ router.patch("/changepassword", async(req, res, next) => {
         next(error);
     }
 });
+
 router.get("/me", auth(), async(req, res, next) => {
     try {
         const user = await prisma.user.findUnique({

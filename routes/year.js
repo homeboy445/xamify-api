@@ -40,6 +40,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(year);
     } catch (err) {
+        console.log("## error in creating year: ", err);
         next(err);
     }
 });

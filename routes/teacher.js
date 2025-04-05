@@ -60,6 +60,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(teacher);
     } catch (err) {
+        console.log(">> error in creating teacher: ", err);
         next(err);
     }
 });
