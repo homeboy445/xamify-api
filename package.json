@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "API for Xamify (MultiversalCodrz)",
   "main": "index.js",
-  "engines": {
-    "node": "<=16"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .",
     "dev": "nodemon .",
-    "lint": "npx prettier --write ."
+    "lint": "npx prettier --write .",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -18,10 +18,10 @@
   "devDependencies": {
     "nodemon": "^3.1.9",
     "prettier": "2.4.0",
-    "prisma": "^3.0.2"
+    "prisma": "^6.6.0"
   },
   "dependencies": {
-    "@prisma/client": "^3.0.2",
+    "@prisma/client": "^6.6.0",
     "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
