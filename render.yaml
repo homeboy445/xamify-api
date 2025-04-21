@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: xamify-api
+    env: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npx prisma generate
+    startCommand: npm start
+    releaseCommand: npx prisma migrate deploy
+
+# Auto-deploy changes
+autoDeploy: true
