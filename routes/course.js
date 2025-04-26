@@ -14,6 +14,7 @@ router.get("/", auth(), async(req, res, next) => {
         const courses = await prisma.course.findMany({});
         res.send(courses);
     } catch (err) {
+        console.log("## error in getting all courses: ", err);
         next(err);
     }
 });
@@ -27,6 +28,7 @@ router.get("/:id", auth(), async(req, res, next) => {
         });
         res.send(course);
     } catch (err) {
+        console.log("## error in getting course by id: ", err); 
         next(err);
     }
 });
@@ -59,6 +61,7 @@ router.get("/subjects/all", auth(), async(req, res, next) => {
         });
         res.send(result);
     } catch (error) {
+        console.log("## error in getting courses with subjects: ", error);
         next(error);
     }
 });
@@ -72,6 +75,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(course);
     } catch (err) {
+        console.log("## error in creating course: ", err);
         next(err);
     }
 });
@@ -89,6 +93,7 @@ router.delete(
 
             res.send(course);
         } catch (err) {
+            console.log("## error in deleting course: ", err);
             next(err);
         }
     }
@@ -108,6 +113,7 @@ router.patch(
             });
             res.send(course);
         } catch (err) {
+            console.log("## error in updating course: ", err);
             next(err);
         }
     }

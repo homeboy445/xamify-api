@@ -44,6 +44,7 @@ router.get("/question/:questionId", auth(), async(req, res, next) => {
         });
         res.send(choices);
     } catch (err) {
+        console.log("## error in getting choices by question: ", err);
         next(err);
     }
 });
@@ -58,6 +59,7 @@ router.get("/:id", auth(), async(req, res, next) => {
         });
         res.send(choice);
     } catch (err) {
+        console.log("## error in getting choice by id: ", err);
         next(err);
     }
 });
@@ -78,6 +80,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(choice);
     } catch (err) {
+        console.log("## error in creating choice: ", err);
         next(err);
     }
 });
@@ -96,6 +99,7 @@ router.delete(
 
             res.send(choice);
         } catch (err) {
+            console.log("## error in deleting choice: ", err);
             next(err);
         }
     }
@@ -123,6 +127,7 @@ router.patch(
             });
             res.send(choice);
         } catch (err) {
+            console.log("## error in updating choice: ", err);
             next(err);
         }
     }

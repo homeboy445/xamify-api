@@ -13,6 +13,7 @@ router.get("/", async(req, res, next) => {
             questionType: QuestionType,
         });
     } catch (error) {
+        console.log("## error in getting types: ", error);
         next(error);
     }
 });

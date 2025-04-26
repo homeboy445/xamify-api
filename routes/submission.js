@@ -143,6 +143,7 @@ router.get("/assessment/:assessmentId", auth(), async(req, res, next) => {
             res.send(submission);
         }
     } catch (err) {
+        console.log("## error in getting submissions by assessment: ", err);
         next(err);
     }
 });
@@ -164,6 +165,7 @@ router.get("/:id", auth(), async(req, res, next) => {
             throw Error("Current user does not have this submission");
         }
     } catch (err) {
+        console.log("## error in getting submission by id: ", err);
         next(err);
     }
 });
@@ -203,6 +205,7 @@ router.get("/:id/pdf", auth(), async(req, res, next) => {
             throw Error("Current user does not have this submission");
         }
     } catch (err) {
+        console.log("## error in generating submission PDF: ", err);
         next(err);
     }
 });
@@ -372,6 +375,7 @@ router.post("/", auth({ type: UserType.STUDENT }), async(req, res, next) => {
         });
         res.send(submission);
     } catch (err) {
+        console.log("## error in creating submission: ", err);
         next(err);
     }
 });

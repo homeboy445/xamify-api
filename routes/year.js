@@ -14,6 +14,7 @@ router.get("/", auth(), async(req, res, next) => {
         const years = await prisma.year.findMany({});
         res.send(years);
     } catch (err) {
+        console.log("## error in getting all years: ", err);
         next(err);
     }
 });
@@ -27,6 +28,7 @@ router.get("/:id", auth(), async(req, res, next) => {
         });
         res.send(year);
     } catch (err) {
+        console.log("## error in getting year by id: ", err);
         next(err);
     }
 });
@@ -58,6 +60,7 @@ router.delete(
 
             res.send(year);
         } catch (err) {
+            console.log("## error in deleting year: ", err);
             next(err);
         }
     }
@@ -77,6 +80,7 @@ router.patch(
             });
             res.send(year);
         } catch (err) {
+            console.log("## error in updating year: ", err);
             next(err);
         }
     }

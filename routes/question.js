@@ -48,6 +48,7 @@ router.get("/assessment/:assessmentId", auth(), async(req, res, next) => {
         });
         res.send(questions);
     } catch (err) {
+        console.log("## error in getting questions by assessment: ", err);
         next(err);
     }
 });
@@ -62,6 +63,7 @@ router.get("/:id", auth(), async(req, res, next) => {
         });
         res.send(question);
     } catch (err) {
+        console.log("## error in getting question by id: ", err);
         next(err);
     }
 });
@@ -89,6 +91,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(question);
     } catch (err) {
+        console.log("## error in creating question: ", err);
         next(err);
     }
 });
@@ -107,6 +110,7 @@ router.delete(
 
             res.send(question);
         } catch (err) {
+            console.log("## error in deleting question: ", err);
             next(err);
         }
     }
@@ -136,6 +140,7 @@ router.patch(
             });
             res.send(question);
         } catch (err) {
+            console.log("## error in updating question: ", err);
             next(err);
         }
     }

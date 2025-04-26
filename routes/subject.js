@@ -33,6 +33,7 @@ router.get("/", auth(), async(req, res, next) => {
         });
         res.send(subjects);
     } catch (err) {
+        console.log("## error in getting all subjects: ", err);
         next(err);
     }
 });
@@ -47,6 +48,7 @@ router.get("/:id", auth(), async(req, res, next) => {
         });
         res.send(subject);
     } catch (err) {
+        console.log("## error in getting subject by id: ", err);
         next(err);
     }
 });
@@ -63,6 +65,7 @@ router.post("/", auth({ type: UserType.TEACHER }), async(req, res, next) => {
         });
         res.send(subject);
     } catch (err) {
+        console.log("## error in creating subject: ", err);
         next(err);
     }
 });
@@ -84,7 +87,7 @@ router.post("/bulk", auth({ type: UserType.TEACHER }), async(req, res, next) => 
         );
         res.send(result);
     } catch (err) {
-        console.log("## error in creating subjects: ", err);
+        console.log("## error in bulk creating subjects: ", err);
         next(err);
     }
 });
@@ -102,6 +105,7 @@ router.delete(
 
             res.send(subject);
         } catch (err) {
+            console.log("## error in deleting subject: ", err);
             next(err);
         }
     }
@@ -122,6 +126,7 @@ router.patch(
             });
             res.send(subject);
         } catch (err) {
+            console.log("## error in updating subject: ", err);
             next(err);
         }
     }

@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { auth } = require("../middlewares");
 const { genPassword } = require("../utils/utils");
 // prisma
-const { PrismaClient, UserType } = require("@prisma/client");
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // UTILS
@@ -103,6 +103,7 @@ router.post(`/register`, async(req, res, next) => {
 
         teacher ? res.sendStatus(200) : res.sendStatus(400);
     } catch (err) {
+        console.log("## error in register route: ", err);
         next(err);
     }
 });
@@ -146,6 +147,7 @@ router.patch("/changepassword", async(req, res, next) => {
             res.status(401).send({ error: "User does not exist" });
         }
     } catch (error) {
+        console.log("## error in change password: ", error);
         next(error);
     }
 });
@@ -165,6 +167,7 @@ router.get("/me", auth(), async(req, res, next) => {
         });
         res.send(user);
     } catch (error) {
+        console.log("## error in getting current user: ", error);
         next(error);
     }
 });
