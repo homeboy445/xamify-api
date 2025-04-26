@@ -24,6 +24,7 @@ app.use(async(err, req, res, next) => {
         .send({ error: err.message || "Some error occured" });
 });
 
-module.exports = app.listen(process.env.PORT || 8000, () => {
+const PORT = process.env.PORT || 8000;
+module.exports = app.listen(PORT, () => {
     console.log(`Server running at ${PORT}`);
 });
