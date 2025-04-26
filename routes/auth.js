@@ -82,10 +82,9 @@ router.post("/token", async(req, res) => {
 // default teacher create route
 router.post(`/register`, async(req, res, next) => {
     try {
-        const email = process.env.DEFAULT_TEACHER_EMAIL;
-        const password = process.env.DEFAULT_TEACHER_PASSWORD;
+        const { email, password, type } = req.body;
 
-        if (!email || !password) return res.sendStatus(401);
+        if (!email || !password || !type) return res.sendStatus(401);
 
         const teacher = await prisma.user.upsert({
             where: {
@@ -97,7 +96,7 @@ router.post(`/register`, async(req, res, next) => {
             create: {
                 email: email,
                 password: await genPassword(password),
-                type: UserType.TEACHER,
+                type: type,
             },
         });
 
