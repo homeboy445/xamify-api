@@ -24,8 +24,6 @@ app.use(async(err, req, res, next) => {
         .send({ error: err.message || "Some error occured" });
 });
 
-PORT = process.env.PORT || 8000;
-
-module.exports = app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+module.exports = app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server running at ${PORT}`);
 });
